@@ -20,13 +20,10 @@ DragNDoc = ((Backbone, Marionette) ->
         callback = options["onValidation"]
         callbackText = options["validationText"] || "Validate"
 
-        i = 0
-        _.each(pages, (page) ->
+        for page,i in pages
             page["enabled"] = true # Can it be selected?
             page["composed"]= false # was it merged into a doc?
             page["id"] = i
-            i++
-        )
 
     # Expose app options through API
     API =
