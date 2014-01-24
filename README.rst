@@ -171,7 +171,7 @@ Each Document itself is composed of a collection of pages.
 Authors
 -------
 
-Gregory Tappero created DragNDoc with `Novapost <http://www.people-doc.com/>`_ R&D team.
+Gregory Tappero created DragNDoc with `Novapost <http://www.people-doc.com/>`_ R&D `team <https://github.com/novapost/dragndoc/blob/master/AUTHORS>`_.
 
 Check also our `contributors <https://github.com/novapost/dragndoc/graphs/contributors>`_
 
