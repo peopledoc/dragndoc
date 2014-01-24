@@ -1,0 +1,35 @@
+{
+  "author": "Greg TAPPERO",
+  "name": "DragNDoc",
+  "description": "Drag and doc brunch template for Novapost",
+  "version": "0.0.1",
+  "homepage": "https://github.com/novapost/dragndoc",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/novapost/dragndoc"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
+  "scripts": {
+    "start": "brunch watch --server",
+    "test": "brunch test"
+  },
+  "dependencies": {
+    "javascript-brunch": ">= 1.0 < 1.7",
+    "coffee-script-brunch": "1.7.3",
+    "coffeelint-brunch": "1.4.0",
+    "css-brunch": ">= 1.0 < 1.7",
+    "stylus-brunch": ">= 1.0 < 1.7",
+    "handlebars-brunch": ">= 1.0 < 1.7",
+    "uglify-js-brunch": ">= 1.0 < 1.7",
+    "clean-css-brunch": ">= 1.0 < 1.7",
+    "digest-brunch": "~1.0.4"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "license": "BSD"
+}
