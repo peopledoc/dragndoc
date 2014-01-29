@@ -10,6 +10,7 @@ DragNDoc = ((Backbone, Marionette) ->
     pages = {}
     callback = null
     callbackText = ""
+    helpText = ""
 
     App.addInitializer (options) ->
         # set layout (source and composition zones)
@@ -19,11 +20,21 @@ DragNDoc = ((Backbone, Marionette) ->
         pages = options["pages"]
         callback = options["onValidation"]
         callbackText = options["validationText"] || "Validate"
+        helpText = options["helpText"] || "How to:"
 
         for page,i in pages
             page["enabled"] = true # Can it be selected?
             page["composed"]= false # was it merged into a doc?
             page["id"] = i
+
+        # Help popup
+        if not localStorage['dragndoc_helper_seen']
+            HelpView = require("views/help")
+            modalView = new HelpView(helpText:helpText)
+            new Backbone.BootstrapModal(
+                content: modalView,
+                animate: false,
+                modalDialogId: "helper").open()
 
     # Expose app options through API
     API =
@@ -31,6 +42,8 @@ DragNDoc = ((Backbone, Marionette) ->
             pages
         getCallbackText: ->
             callbackText
+        getHelpText: ->
+            helpText
         getCallback: ->
             callback
 
@@ -42,6 +55,9 @@ DragNDoc = ((Backbone, Marionette) ->
 
     App.reqres.setHandler "options:callback", ->
         API.getCallback()
+
+    App.reqres.setHandler "options:helpText", ->
+        API.getHelpText()
 
     # Marionette Command to display a large page preview as a bootsrap modal
     App.commands.setHandler "page:preview", (model) ->

@@ -40,7 +40,8 @@
         DragNDoc = require('application');
         DragNDoc.start({
            pages: demo_pages, 
-           validationText: "Validate", 
+           validationText: "Validate",
+           helpText: "How to split a document:",
            onValidation: function(data) {
               alert(JSON.stringify(data));
            }
