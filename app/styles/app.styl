@@ -4,7 +4,7 @@ html, body
     width: 100%
     margin: 0
 
-div#content
+div#content, div#dragndoc-wrapper
     height: 100%
 
 div#source
@@ -60,6 +60,7 @@ div.page-wrap
     img
         cursor: pointer
         box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3)
+        width: 113px
 
     div.close
         display: none
@@ -68,16 +69,16 @@ div.page-wrap
         -webkit-transform:scale(1.1) rotate(7deg)
 
     &.disabled
-        opacity: 0.4
+        opacity: 0.3
 
     &.selected
-        opacity: 0.4
+        opacity: 0.3
         div.highlight
             width: 113px
             height: 15px
-            background-color: rgba(79, 153, 55, 0.4)
+            background-color: rgba(79, 153, 55, 1)
             position: absolute
-            bottom: 30px
+            top: 0px
             left: 0px
 
 

@@ -1,7 +1,7 @@
 
 AppLayout = Backbone.Marionette.Layout.extend(
   template: "/templates/app_layout"
-  el: "body"
+  el: "div#dragndoc-wrapper"
   regions:
     pagePicker: "#source"
     pagePickerContent: "#source-content"

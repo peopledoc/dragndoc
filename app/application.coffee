@@ -90,21 +90,23 @@ DragNDoc.module "DragnDoc.PagePicker", (PagePicker, DragnDoc, Backbone, Marionet
         # Listen to view events
         pagePickerView.on "itemview:page:dragstart", (childView, model) ->
             selectedPagesIds.push model.get("id")
+            selectedPagesIds = _.union(selectedPagesIds)
             pagesCollection.each (page) ->
                 if page.get("id") in selectedPagesIds
                     page.set(dragging: true)
 
         pagePickerView.on "itemview:page:dragend", (childView, model) ->
             pagesCollection.each (page) ->
-                if page.get("id") in selectedPagesIds
-                    page.set(dragging: false)
-            selectedPagesIds = _.without(selectedPagesIds, model.get("id"))
+                page.set(dragging: false)
+            if not model.get("selected")
+                selectedPagesIds = _.without(selectedPagesIds, model.get("id"))
 
         pagePickerView.on "itemview:page:selected", (childView, model) ->
             selectedPagesIds.push model.get("id")
 
         pagePickerView.on "itemview:page:deselected", (childView, model) ->
             API.removeIdFromSelection model.get("id")
+
 
         # When a shift event is received we get all pages with ids between what 
         # is saved in `selectedPagesIds` and the received pageId.
@@ -137,14 +139,16 @@ DragNDoc.module "DragnDoc.PagePicker", (PagePicker, DragnDoc, Backbone, Marionet
             pagesCollection.each (page) ->
                 if page.get("id") in selectedPagesIds
                     page.set(enabled: false)
-                    page.set(composed: true)
+                    page.set(selected: false)
                     page.set(dragging: false)
+                    page.set(composed: true)
             API.resetSelection()
 
         DragnDoc.vent.on "page:deleted", (docid) ->
             page = pagesCollection.get(docid)
             page.set(enabled: true)
             page.set(composed: false)
+            page.set(dragging: false)
 
     API = 
         getSelectedPagesIds: ->
