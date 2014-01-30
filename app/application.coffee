@@ -26,6 +26,7 @@ DragNDoc = ((Backbone, Marionette) ->
             page["enabled"] = true # Can it be selected?
             page["composed"]= false # was it merged into a doc?
             page["id"] = i
+            page["ordinal"] = i
 
         # Help popup
         if not localStorage['dragndoc_helper_seen']

@@ -9,12 +9,15 @@ PageModel = Backbone.Model.extend(
         composed: false   # was it merged into a doc?
         selected: false
         dragging: false
+        ordinal: -1
 
 )
 
 # Page Collection
 PagesCollection = Backbone.Collection.extend(
     model = PageModel
+    comparator: (model) ->
+        model.get "ordinal"
 )
 
 module.exports = 

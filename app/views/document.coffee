@@ -43,15 +43,23 @@ DocumentView = Marionette.CompositeView.extend(
             # Tell the world
             DragNDoc.vent.trigger("page:deleted", docid)
 
-        @on "itemview:page:sort", (childView, pageModel, index) ->
-            tempModel = pageModel
+        @on "itemview:page:sort", (childView, pageModel, position) ->
+            position = parseInt(position, 10)
             @collection.remove(pageModel)
-            @collection.add(tempModel, at:index)
 
+            @collection.each (model, index) ->
+                ordinal = index
+                ordinal += 1  if index >= position
+                model.set "ordinal", ordinal
 
-    onShow: ->
+            pageModel.set "ordinal", position
+            @collection.add(pageModel, at:position)
+            @render()
+
+    onRender: ->
         @ui.docpages.sortable(
             container: "div.docwrapper",
+            # Catch jqueryui drop event propagation
             stop: (event, ui) ->
                 ui.item.trigger "sortable:drop", ui.item.index()
         )
