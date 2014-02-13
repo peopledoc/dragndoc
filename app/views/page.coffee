@@ -39,6 +39,8 @@ PageView = Marionette.ItemView.extend(
 
     # Page was sorted inside a doc
     drop: (e, index) ->
+        e.stopPropagation()
+        e.preventDefault()
         @trigger("page:sort", @model, index)
 
 

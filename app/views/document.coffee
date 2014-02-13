@@ -23,6 +23,7 @@ DocumentView = Marionette.CompositeView.extend(
         @ui.docwrapper.removeClass('hovered')
 
     addPageToDoc: (e) ->
+        e.originalEvent.preventDefault()
         @trigger("page:add", @model)
         @ui.docwrapper.removeClass('hovered')
 
