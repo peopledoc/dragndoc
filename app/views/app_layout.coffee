@@ -7,6 +7,7 @@ AppLayout = Backbone.Marionette.Layout.extend(
     pagePickerContent: "#source-content"
     composer: "#compose"
     composerContent: "#compose-content"
+    composerTitle: "#compose-title"
 )
 
 module.exports = AppLayout

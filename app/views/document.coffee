@@ -59,11 +59,13 @@ DocumentView = Marionette.CompositeView.extend(
 
     onRender: ->
         @ui.docpages.sortable(
-            container: "div.docwrapper",
+            #container: "div.docwrapper",
+            connectWith: ".connect-pages"
+            placeholder: "ui-state-highlight"
             # Catch jqueryui drop event propagation
             stop: (event, ui) ->
                 ui.item.trigger "sortable:drop", ui.item.index()
-        )
+        ).disableSelection()
 
 )
 

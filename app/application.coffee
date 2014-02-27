@@ -30,12 +30,7 @@ DragNDoc = ((Backbone, Marionette) ->
 
         # Help popup
         if not localStorage['dragndoc_helper_seen']
-            HelpView = require("views/help")
-            modalView = new HelpView(helpText:helpText)
-            new Backbone.BootstrapModal(
-                content: modalView,
-                animate: false,
-                modalDialogId: "helper").open()
+            DragNDoc.execute "app:help"
 
     # Expose app options through API
     API =
@@ -69,6 +64,15 @@ DragNDoc = ((Backbone, Marionette) ->
             showFooter: false,
             animate: false,
             modalDialogId: "page-previewer").open()
+
+    App.commands.setHandler "app:help", ->
+        HelpView = require("views/help")
+        modalView = new HelpView(helpText:helpText)
+        new Backbone.BootstrapModal(
+            content: modalView,
+            animate: false,
+            allowCancel: false,
+            modalDialogId: "helper").open()
 
     App
 
@@ -188,6 +192,7 @@ DragNDoc.module "DragnDoc.PagePicker", (PagePicker, DragnDoc, Backbone, Marionet
 DragNDoc.module "DragnDoc.Composer", (Composer, DragnDoc, Backbone, Marionette, $, _) ->
 
     ComposerCompositeView = require("views/composer")
+    ComposerTitleView = require("views/composer_title")
 
     Composer.addInitializer ->
         # Create empty collection
@@ -198,9 +203,11 @@ DragNDoc.module "DragnDoc.Composer", (Composer, DragnDoc, Backbone, Marionette, 
         composerView = new ComposerCompositeView(
             collection: @docs 
         )
+        composerTitleView = new ComposerTitleView()
 
         # Update region & render
         DragNDoc.layout.composerContent.show composerView
+        DragNDoc.layout.composerTitle.show composerTitleView
 
         that = @
 
@@ -222,6 +229,10 @@ DragNDoc.module "DragnDoc.Composer", (Composer, DragnDoc, Backbone, Marionette, 
             that.docs.add(doc)
             # Tell the world about this new doc
             DragnDoc.vent.trigger("pages:added")
+            # TODO how to access region as jquery object
+            # in the meantime we go for an ugly fix
+            $("#compose-content").scrollTop $("#compose-content").height()
+
 
         # Handle itemview:page:add to add pages to an existing document
         composerView.on "itemview:page:add", (childView, doc) ->
@@ -231,6 +242,7 @@ DragNDoc.module "DragnDoc.Composer", (Composer, DragnDoc, Backbone, Marionette, 
             )
             doc.get("pages").add(newPages)
             DragnDoc.vent.trigger("pages:added")
+
 
         composerView.on "docs:export", (childView, doc) ->
             DragNDoc.request("options:callback")(that.docs.toJSON())

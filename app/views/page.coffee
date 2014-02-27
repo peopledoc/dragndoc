@@ -45,7 +45,7 @@ PageView = Marionette.ItemView.extend(
 
 
     imgClick: (e) ->
-        if e.ctrlKey
+        if e.ctrlKey || e.ctrlKey && e.altKey
             # Ctrl key on active non merged page should gray out the page
             if @model.get("enabled") and not @model.get("composed")
                 @model.set(enabled: false)
