@@ -8,6 +8,10 @@ DragNDoc is JS application to help splitting and ordering document pages in sub 
     :width: 800
     :align: center
 
+Try it
+------
+
+Small PDF splitter application based on DragNDoc splitpdfapp.com http://splitpdfapp.com 
 
 Install
 -------
