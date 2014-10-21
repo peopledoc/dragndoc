@@ -201,7 +201,7 @@ DragNDoc.module "DragnDoc.Composer", (Composer, DragnDoc, Backbone, Marionette, 
 
         # Spawn view
         composerView = new ComposerCompositeView(
-            collection: @docs 
+            collection: @docs
         )
         composerTitleView = new ComposerTitleView()
 
@@ -226,12 +226,9 @@ DragNDoc.module "DragnDoc.Composer", (Composer, DragnDoc, Backbone, Marionette, 
             doc = new docModels.Doc(pages:docPagesCollection)
 
             # Add this new doc to our collection
-            that.docs.add(doc)
+            that.docs.add(doc, at:0)
             # Tell the world about this new doc
             DragnDoc.vent.trigger("pages:added")
-            # TODO how to access region as jquery object
-            # in the meantime we go for an ugly fix
-            $("#compose-content").scrollTop $("#compose-content").height()
 
 
         # Handle itemview:page:add to add pages to an existing document
