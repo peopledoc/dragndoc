@@ -20,6 +20,16 @@ ComposerCompositeView = Marionette.CompositeView.extend(
 
     submit: (e) ->
         @trigger("docs:export")
+  
+    # This would have been native in Marionette 2.0
+    # Remove if updated at some point
+    appendHtml: (collectionView, itemView, index) ->
+        childrenContainer = $(collectionView.childrenContainer || collectionView.itemViewContainer || collectionView.el);
+        children = childrenContainer.children()
+        if (children.size() == index)
+          childrenContainer.append(itemView.el)
+        else
+          childrenContainer.children().eq(index).before(itemView.el)
 
     # Update drop zone design on dragover
     dragoverDropZone: (e) ->
