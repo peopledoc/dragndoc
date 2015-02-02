@@ -24,8 +24,7 @@
     "stylus-brunch": ">= 1.0 < 1.7",
     "handlebars-brunch": ">= 1.0 < 1.7",
     "uglify-js-brunch": ">= 1.0 < 1.7",
-    "clean-css-brunch": ">= 1.0 < 1.7",
-    "digest-brunch": "~1.0.4"
+    "clean-css-brunch": ">= 1.0 < 1.7"
   },
   "main": "index.js",
   "directories": {

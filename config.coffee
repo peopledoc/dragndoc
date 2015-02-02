@@ -17,7 +17,7 @@ exports.config =
         ]
 
     stylesheets:
-      joinTo: 
+      joinTo:
         'css/app.css': /^(app)/
         'css/vendor.css': /^(bower_components|vendor|app)/
 
@@ -32,13 +32,6 @@ exports.config =
       production:
         optimize: yes
         sourceMaps: no
-
-  plugins:
-    digest:
-      # RegExp that matches files that contain DIGEST references.
-      referenceFiles: /\.html$/
-      # How many digits of the SHA1 to append to digested files.
-      precision: 12
 
   modules:
     # We cant avoid require js wrapping since brunch modules use commonjs
