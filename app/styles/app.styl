@@ -1,0 +1,233 @@
+
+html, body
+    height: 100%
+    width: 100%
+    margin: 0
+
+div#content, div#dragndoc-wrapper
+    height: 100%
+
+div#source
+    position: relative
+    float: left
+    height: 100%
+    padding-top: 40px
+    width: 50%
+    overflow: hidden
+    background: url("../imgs/bg.jpg")
+    background-repeat: repeat
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-urser-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+    div#source-content
+        padding: 26px 0 0 20px
+        overflow: auto
+        height: 100%
+
+#helptrigger {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+div.topnavbar
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    margin-top: 0
+    border: 0
+    background: url("../imgs/bar_bg.png")
+    text-shadow: 0 1px 0 #ddd
+    color: #000
+    background-repeat: repeat-x
+    height: 37px
+    box-shadow: 0px -1px 4px 1px rgba(0, 0, 0, 0.6)
+    border-bottom: 1px   solid #777
+
+    h2
+        margin: 0px
+        color: #333
+        font-family: Arial,Helvetica,sans-serif
+        font-size: 18px
+        padding: 9px 0 0 20px
+
+// Page view styling
+div.page-wrap
+    position: relative
+    float: left
+    width: 125px
+    height: 180px
+
+    img
+        cursor: pointer
+        box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3)
+        width: 113px
+
+    div.close
+        display: none
+
+    &.dragging
+        -webkit-transform:scale(1.1) rotate(7deg)
+
+    &.disabled
+        opacity: 0.3
+
+    &.selected
+        opacity: 0.3
+        div.highlight
+            width: 113px
+            height: 15px
+            background-color: rgba(79, 153, 55, 1)
+            position: absolute
+            top: 0px
+            left: 0px
+
+
+    &:hover.grow
+        img.thumb-preview, div.highlight
+            -webkit-transform: scale(1.1);
+
+        div.highlight
+            bottom: 23px
+
+        p.pagenumber
+            cursor: pointer
+            margin-top: 5px
+            margin-right: 40px
+            text-align: center
+            text-decoration: underline
+
+// Close button on compose pages
+div#compose-content div.page-wrap.composed
+       div.close
+            width: 25px
+            height: 25px
+            position: absolute
+            top: 7px
+            left: 86px
+            opacity: 1
+
+div#compose-content div.page-wrap.composed:hover
+       div.close
+            color: #EC3434
+            opacity: 0.7
+            display: block
+
+            &:hover
+                opacity: 1
+
+
+div.modal-dialog
+    width: 740px;
+
+    img.large
+        width: 100%
+
+.ui-state-highlight {
+    border: 2px dashed #ccc;
+    background-color: #fefefe;
+    width:113px;
+    margin: 0 12px 25px 2px;
+    height: 150px;
+}
+
+p.pagenumber
+    font-size: 10px
+    font-weight: bold
+    cursor: pointer
+    margin-top: 5px
+    margin-right: 40px
+    text-align: center
+
+div#dropzone
+    position: relative
+    height: 164px
+    width: 95%
+    background: url('../imgs/doc_drop3.png') no-repeat 0px 0
+    margin: 5px 0 10px 10px
+
+
+div#compose
+    position: relative
+    padding-top: 40px
+    float: left
+    height: 100%
+    width: 50%
+    overflow: hidden
+    background: url("../imgs/bg.jpg")
+    background-repeat: repeat
+    border-left: 1px solid #aaa
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-urser-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+    #compose-content
+        overflow: auto
+        height: 100%
+
+        div.booklet
+            width: 100%
+            float: left
+            padding: 0 20px 0 90px
+            margin: 8px 0 10px 0
+            clear: both
+
+        div.ui-sortable div
+            float: left
+
+        div.docwrapper
+            border: 1px solid #cfcfcf
+            position: display-block
+            background: #f4f3f1
+            padding-top: 16px;
+
+            &.hovered
+                box-shadow: 0 5px 0px -1px rgba(79,153,55,0.3)
+
+            &:after, &:before
+                right: 100%
+                border: solid transparent
+                content: " "
+                height: 0
+                width: 0
+                position: absolute
+                pointer-events: none
+
+            &:after
+                border-color: rgba(213, 213, 213, 0)
+                border-right-color: #f4f3f1
+                border-width: 15px
+                top: 34px
+                margin-top: -15px
+
+             &:before
+                border-color: rgba(194, 225, 245, 0)
+                border-right-color: #ccc
+                border-width: 16px
+                top: 34px
+                margin-top: -16px
+
+    div.doc-indicator-thumb
+        background: url('../imgs/doc_drop_thumb2.png') no-repeat 0px  0
+        position: absolute
+        left: -60px
+        height: 70px
+        margin-top: 9px
+        width: 30px
+
+    div#submit-docs
+        float: right
+        margin: 15px 20px
