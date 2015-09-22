@@ -3,7 +3,11 @@
     <div class="topnavbar">
       <h2>Source</h2>
     </div>
-    <div id="source-content" class="sortable"></div>
+    <div class="page-list">
+      {{#each pages as |page|}}
+        {{doc-page content=page}}
+      {{/each}}
+    </div>
   </div>
 
   <div id="compose">
