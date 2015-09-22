@@ -23,8 +23,17 @@
     {{content-for 'body-footer'}}
     <script>
       $(function () {
+        var demo_pages = [];
+        for (var i = 1; i < 15; i++) {
+          demo_pages.push({
+            "name": "p. " + i,
+            "small_src": "../demo/doc_previews/document_small_p" + i + ".png",
+            "large_src": "../demo/doc_previews/document_large_p" + i + ".png"
+          })
+        }
         emberDragndoc.start({
-          helpText: "How to split a document"
+          helpText: "How to split a document",
+          pages: demo_pages
         });
       })
     </script>
