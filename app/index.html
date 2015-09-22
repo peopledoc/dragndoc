@@ -21,5 +21,12 @@
     <script src="assets/ember-dragndoc.js"></script>
 
     {{content-for 'body-footer'}}
+    <script>
+      $(function () {
+        emberDragndoc.start({
+          helpText: "How to split a document"
+        });
+      })
+    </script>
   </body>
 </html>
