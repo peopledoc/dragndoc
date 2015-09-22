@@ -9,8 +9,9 @@ export function initialize(instance) {
     return;
   }
   const pages = Ember.A(conf.get('pages'));
-  pages.forEach((p)=> {
+  pages.forEach((p, i)=> {
     p.id = 'page_' + uuid();
+    p.position = i;
     store.push('page', p);
   });
 }
