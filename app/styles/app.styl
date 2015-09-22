@@ -133,15 +133,20 @@ p.pagenumber
     text-align: center
 
 .doc-creator
+  z-index: 10
   width: 100%
   .dropzone
     position: relative
     height: 164px
     background: url('../imgs/doc_drop3.png') no-repeat 0px 0
     margin: 5px 0 10px 10px
-  .btn-create
-    float: right
-    margin: 15px 20px
+  &.hvr-buzz-out
+    display: block
+.compose-btn
+  position: relative
+  z-index: 100
+  float: right
+  margin: 15px 20px
 
 div#compose
     position: relative

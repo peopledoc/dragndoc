@@ -20,6 +20,13 @@
         <i class="fa fa-cloud-download">&nbsp;</i>{{ validateText }}<br />
       {{/compose-btn}}
       {{doc-creator create='createDocument'}}
+      {{#each documents as |document|}}
+        {{#pending-document}}
+          {{#each document.pages pages as |page|}}
+            {{doc-page content=page click=(action 'toggleZoom' page)}}
+          {{/each}}
+        {{/pending-document}}
+      {{/each}}
     </div>
   </div>
 </div>

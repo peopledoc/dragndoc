@@ -9,11 +9,24 @@ export default Ember.Controller.extend({
       return this.get('store').find('page');
     }
   }),
+  initDocuments: function () {
+    this.set('documents', this.store.find('document'));
+  }.on('init'),
   unknownProperty(k) {
     const conf = this.container.lookup('config:embedded');
     if (conf) {
       return get(conf, k);
     }
+  },
+  serialize(docs) {
+    const results = docs.map((doc)=> {
+      return doc.get('pages').map((page)=> {
+        return {
+          id: page.position, name: page.name
+        };
+      });
+    }).toArray();
+    console.log('RESULT', results);
   },
   actions: {
     toggleHelp() {
@@ -29,6 +42,13 @@ export default Ember.Controller.extend({
       } else {
         this.set('previewImage', null);
       }
+    },
+    createDocument(page) {
+      this.store.push('document', { id: `document_${Ember.uuid()}`, pages: [page] });
+      page.set('available', false);
+    },
+    serialize() {
+      this.serialize(this.get('documents'));
     }
   }
 });
