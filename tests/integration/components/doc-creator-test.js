@@ -14,11 +14,3 @@ test('it renders', function(assert) {
 
   assert.ok(true, 'it renders without errors');
 });
-
-test('it hides the validate button by default', function(assert) {
-  assert.expect(1);
-
-  this.render(hbs`{{doc-creator}}`);
-
-  assert.ok(this.$('.btn-create').not(':visible'));
-});
