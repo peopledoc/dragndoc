@@ -1,4 +1,6 @@
 @require "./modal-dialog"
+@require "./animations"
+@require "./drag"
 
 html, body
     height: 100%
@@ -19,7 +21,7 @@ div#source
     background-repeat: repeat
     -webkit-touch-callout: none
     -webkit-user-select: none
-    -khtml-urser-select: none
+    -khtml-user-select: none
     -moz-user-select: none
     -ms-user-select: none
     user-select: none
@@ -130,13 +132,16 @@ p.pagenumber
     margin-right: 40px
     text-align: center
 
-div#dropzone
+.doc-creator
+  width: 100%
+  .dropzone
     position: relative
     height: 164px
-    width: 95%
     background: url('../imgs/doc_drop3.png') no-repeat 0px 0
     margin: 5px 0 10px 10px
-
+  .btn-create
+    float: right
+    margin: 15px 20px
 
 div#compose
     position: relative
@@ -229,7 +234,3 @@ div#compose
         height: 70px
         margin-top: 9px
         width: 30px
-
-    .doc-creator .btn-create
-        float: right
-        margin: 15px 20px

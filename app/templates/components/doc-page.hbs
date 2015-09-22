@@ -1,6 +1,13 @@
-<img src="{{ content.small_src }}" class="thumb-preview" >
-<div class="highlight"></div>
-<div class="close fa fa-times"></div>
-<p class="pagenumber">
-  {{ content.name }}
-</p>
+{{#draggable-object
+  content=content
+  dragStartAction='startDragging'
+  dragEndAction='stopDragging'
+  isDraggable=content.available
+}}
+  <img src="{{ content.small_src }}" class="thumb-preview" >
+  <div class="highlight"></div>
+  <div class="close fa fa-times"></div>
+  <p class="pagenumber">
+    {{ content.name }}
+  </p>
+{{/draggable-object}}
