@@ -4,10 +4,11 @@ export default Ember.Component.extend({
   classNames: ['page-wrap', 'doc-page'],
   classNameBindings: [
     'dragging',
-    'content.available::disabled',
-    'content.available::composed',
-    'content.available:hvr-grow'
+    'isDraggable::disabled',
+    'isDraggable::composed',
+    'isDraggable:hvr-grow'
   ],
+  isDraggable: Ember.computed.reads('content.available'),
   actions: {
     startDragging() {
       this.set('dragging', true);

@@ -23,7 +23,7 @@
       {{#each documents as |document|}}
         {{#pending-document}}
           {{#each document.pages pages as |page|}}
-            {{doc-page content=page click=(action 'toggleZoom' page)}}
+            {{doc-page isDraggable=true content=page click=(action 'toggleZoom' page)}}
           {{/each}}
         {{/pending-document}}
       {{/each}}
