@@ -5,7 +5,7 @@
     </div>
     <div class="page-list">
       {{#each pages as |page|}}
-        {{doc-page content=page}}
+        {{doc-page content=page click=(action 'toggleZoom' page)}}
       {{/each}}
     </div>
   </div>
@@ -32,5 +32,14 @@
   <div class="modal-footer">
     <div class="btn btn-primary pull-right" {{action 'toggleHelp'}}>OK</div>
   </div>
+{{/modal-dialog}}
+{{/if}}
+
+{{#if previewImage}}
+{{#modal-dialog
+  translucentOverlay=true
+  close="toggleZoom"
+  attachment="top center"}}
+  <img src="{{previewImage.large_src}}" alt="{{previewImage.name}}">
 {{/modal-dialog}}
 {{/if}}

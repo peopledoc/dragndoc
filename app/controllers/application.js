@@ -18,6 +18,17 @@ export default Ember.Controller.extend({
   actions: {
     toggleHelp() {
       this.toggleProperty('isHelpVisible');
+    },
+    toggleZoom(page) {
+      if (page) {
+        const img = new Image();
+        img.src = page.get('large_src');
+        img.addEventListener('load', ()=> {
+          this.set('previewImage', page);
+        });
+      } else {
+        this.set('previewImage', null);
+      }
     }
   }
 });
