@@ -108,26 +108,6 @@ div.page-wrap
             text-align: center
             text-decoration: underline
 
-// Close button on compose pages
-div#compose-content div.page-wrap.composed
-       div.close
-            width: 25px
-            height: 25px
-            position: absolute
-            top: 7px
-            left: 86px
-            opacity: 1
-
-div#compose-content div.page-wrap.composed:hover
-       div.close
-            color: #EC3434
-            opacity: 0.7
-            display: block
-
-            &:hover
-                opacity: 1
-
-
 div.modal-dialog
     width: 740px;
 
@@ -221,6 +201,27 @@ div#compose
                 top: 34px
                 margin-top: -16px
 
+        // Close button on compose pages
+        div.page-wrap.composed
+          div.close
+            width: 25px
+            height: 25px
+            position: absolute
+            top: 7px
+            left: 86px
+            opacity: 1
+
+        div.page-wrap.composed:hover
+          div.close
+            color: #EC3433
+            opacity: 0.7
+            display: block
+
+            &:hover
+                opacity: 1
+
+
+
     div.doc-indicator-thumb
         background: url('../imgs/doc_drop_thumb2.png') no-repeat 0px  0
         position: absolute
@@ -229,6 +230,6 @@ div#compose
         margin-top: 9px
         width: 30px
 
-    div#submit-docs
+    .doc-creator .btn-create
         float: right
         margin: 15px 20px
