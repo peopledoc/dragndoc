@@ -17,13 +17,16 @@
 
 {{#if isHelpVisible}}
 {{#modal-dialog translucentOverlay=true close="toggleHelp"}}
-<div class="modal-dialog">
-  <h2>{{ helpText }}</h2>
-  <div class="bg"></div>
-  <br/><br/>
-  <h4>Keyboard shortcuts</h4>
-  <p>To select non-consecutive files or folders, press and hold down the <code>Ctrl</code> key, and then <code>click</code> each item that you want to select.</p>
-  <p>To select a consecutive group of pages, press and hold down the <code>Shift</code> key, <code>click</code> the first item and then <code>click</code> the last item.</p>
-</div>
+  <div class="modal-body">
+    <h2>{{ helpText }}</h2>
+    <div class="bg"></div>
+    <br/>
+    <h4>Keyboard shortcuts</h4>
+    <p>To select non-consecutive files or folders, press and hold down the <code>Ctrl</code> key, and then <code>click</code> each item that you want to select.</p>
+    <p>To select a consecutive group of pages, press and hold down the <code>Shift</code> key, <code>click</code> the first item and then <code>click</code> the last item.</p>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-primary pull-right" {{action 'toggleHelp'}}>OK</div>
+  </div>
 {{/modal-dialog}}
 {{/if}}
