@@ -18,6 +18,9 @@
     <div id="compose-content">
       {{doc-creator}}
       <div id="docs"></div>
+      {{#compose-btn canSubmit=documents.length click=(action 'serialize')}}
+        <i class="fa fa-cloud-download">&nbsp;</i>{{ validateText }}<br />
+      {{/compose-btn}}
     </div>
   </div>
 </div>
