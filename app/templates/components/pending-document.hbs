@@ -1,6 +1,10 @@
+{{#draggable-object-target
+  action='dropped'
+}}
 <div class="col-md-12 docwrapper">
   <div class="doc-indicator-thumb">&nbsp;</div>
-  <div class="sortable docpages connect-pages">
+  <div class="sortable docpages connect-pages overflow">
     {{yield}}
   </div>
 </div>
+{{/draggable-object-target}}

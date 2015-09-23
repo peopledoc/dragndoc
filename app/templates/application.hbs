@@ -5,7 +5,7 @@
     </div>
     <div class="page-list">
       {{#each pages as |page|}}
-        {{doc-page content=page click=(action 'toggleZoom' page)}}
+        {{doc-page content=page highlightClass='hvr-grow' click=(action 'toggleZoom' page)}}
       {{/each}}
     </div>
   </div>

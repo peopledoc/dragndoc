@@ -6,9 +6,18 @@ export default Ember.Component.extend({
     'dragging',
     'isDraggable::disabled',
     'isDraggable::composed',
-    'isDraggable:hvr-grow'
+    'highlight'
   ],
   isDraggable: Ember.computed.reads('content.available'),
+  highlightClass: '',
+  highlight: Ember.computed('isDraggable', {
+    get() {
+      if (this.get('isDraggable')) {
+        return this.get('highlightClass');
+      }
+      return '';
+    }
+  }),
   actions: {
     startDragging() {
       this.set('dragging', true);
