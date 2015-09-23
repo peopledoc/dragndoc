@@ -12,6 +12,11 @@ export default Ember.Controller.extend({
   initDocuments: function () {
     this.set('documents', this.store.find('document'));
   }.on('init'),
+  sortedDocuments: Ember.computed('documents.[]', {
+    get() {
+      return this.get('documents').toArray().reverse();
+    }
+  }).readOnly(),
   unknownProperty(k) {
     const conf = this.container.lookup('config:embedded');
     if (conf) {
@@ -54,7 +59,7 @@ export default Ember.Controller.extend({
       doc.addPage(page);
     },
     serialize() {
-      this.serialize(this.get('documents'));
+      this.serialize(this.get('sortedDocuments'));
     },
     clearPage(page, document) {
       document.removePage(page);

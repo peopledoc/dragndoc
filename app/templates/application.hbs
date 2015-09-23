@@ -20,7 +20,7 @@
         <i class="fa fa-cloud-download">&nbsp;</i>{{ validateText }}<br />
       {{/compose-btn}}
       {{doc-creator create='createDocument'}}
-      {{#each documents as |document|}}
+      {{#each sortedDocuments as |document|}}
         {{#pending-document content=document as |page|}}
           {{#doc-page isDraggable=true content=page click=(action 'toggleZoom' page)}}
           <div class="close fa fa-times" {{action 'clearPage' page document}}></div>
