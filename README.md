@@ -1,4 +1,4 @@
-# Ember-dragndoc
+# dragndoc
 
 DragNDoc accepts a series of images as input and allows you to
 split, order and overall manage these images into a series of albums.

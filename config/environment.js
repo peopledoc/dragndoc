@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'ember-dragndoc',
+    modulePrefix: 'dragndoc',
     environment: environment,
     baseURL: '/',
     locationType: 'none',

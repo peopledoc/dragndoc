@@ -1,5 +1,5 @@
 {
-  "name": "ember-dragndoc",
+  "name": "dragndoc",
   "version": "0.0.0",
   "description": "Composition tool; Split a series of images in albums",
   "private": true,
