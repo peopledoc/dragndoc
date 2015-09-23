@@ -49,6 +49,12 @@ export default Ember.Controller.extend({
     },
     serialize() {
       this.serialize(this.get('documents'));
+    },
+    clearPage(page, document) {
+      document.removePage(page);
+      if (document.get('pages.length') === 0) {
+        this.store.remove('document', document.get('id'));
+      }
     }
   }
 });

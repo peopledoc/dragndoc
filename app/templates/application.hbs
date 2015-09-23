@@ -23,7 +23,7 @@
       {{#each documents as |document|}}
         {{#pending-document content=document as |page|}}
           {{#doc-page isDraggable=true content=page click=(action 'toggleZoom' page)}}
-            <div class="close fa fa-times"></div>
+          <div class="close fa fa-times" {{action 'clearPage' page document}}></div>
           {{/doc-page}}
         {{/pending-document}}
       {{/each}}
