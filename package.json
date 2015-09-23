@@ -1,7 +1,7 @@
 {
   "name": "ember-dragndoc",
   "version": "0.0.0",
-  "description": "Small description for ember-dragndoc goes here",
+  "description": "Composition tool; Split a series of images in albums",
   "private": true,
   "directories": {
     "doc": "doc",
@@ -12,7 +12,7 @@
     "start": "ember server",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "git@github.com:novapost/dragndoc.git",
   "engines": {
     "node": ">= 0.10.0"
   },

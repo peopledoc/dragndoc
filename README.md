@@ -1,7 +1,7 @@
 # Ember-dragndoc
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+DragNDoc accepts a series of images as input and allows you to
+split, order and overall manage these images into a series of albums.
 
 ## Prerequisites
 
