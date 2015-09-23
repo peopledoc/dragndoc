@@ -21,10 +21,8 @@
       {{/compose-btn}}
       {{doc-creator create='createDocument'}}
       {{#each documents as |document|}}
-        {{#pending-document}}
-          {{#each document.pages pages as |page|}}
-            {{doc-page isDraggable=true content=page click=(action 'toggleZoom' page)}}
-          {{/each}}
+        {{#pending-document content=document as |page|}}
+          {{doc-page isDraggable=true content=page click=(action 'toggleZoom' page)}}
         {{/pending-document}}
       {{/each}}
     </div>

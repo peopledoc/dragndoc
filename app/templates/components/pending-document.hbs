@@ -4,7 +4,13 @@
 <div class="col-md-12 docwrapper">
   <div class="doc-indicator-thumb">&nbsp;</div>
   <div class="sortable docpages connect-pages overflow">
-    {{yield}}
+    {{#sortable-group class="infinite" tagName="ul" direction='x' onChange="reorderItems" as |group|}}
+    {{#each content.pages pages as |page|}}
+      {{#sortable-item tagName="li" model=page group=group}}
+        {{yield page}}
+      {{/sortable-item}}
+    {{/each}}
+    {{/sortable-group}}
   </div>
 </div>
 {{/draggable-object-target}}

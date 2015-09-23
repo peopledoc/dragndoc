@@ -44,8 +44,8 @@ export default Ember.Controller.extend({
       }
     },
     createDocument(page) {
-      this.store.push('document', { id: `document_${Ember.uuid()}`, pages: [page] });
-      page.set('available', false);
+      const doc = this.store.push('document', { id: `document_${Ember.uuid()}`, pages: [] });
+      doc.addPage(page);
     },
     serialize() {
       this.serialize(this.get('documents'));
