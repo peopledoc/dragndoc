@@ -45,28 +45,41 @@ export default Ember.Controller.extend({
       this.toggleProperty('isHelpVisible');
     },
     handleClick(page, event) {
+      if (!page.get('available')) {
+        return;
+      }
       let action = 'toggleZoom';
       if (event.ctrlKey || event.metaKey) { //Don't forget the Mac users
         action = 'toggleSelectedPage';
+      } else if (event.shiftKey) {
+        action = 'selectMany';
       }
       this.send(action, page, event);
     },
-    selectPage(page) {
-      if (!page.get('available')) {
-        return;
+    selectMany(page) {
+      if (this.get('selectedItems').contains(page)) {
+        return this.send('toggleSelectedPage', page);
       }
+      const pages = this.get('pages');
+      const lastSelected = this.get('selectedItems.lastObject');
+      const lastPos = Math.max(pages.indexOf(lastSelected), 0);
+      const currentPos = pages.indexOf(page);
+      const selection = pages
+        .slice(Math.min(lastPos, currentPos), Math.max(lastPos, currentPos) + 1);
+      this.send('select', selection);
+    },
+    select(sel) {
       const selected = this.get('selectedItems');
-      selected.addObject(page);
+      const valid = Ember.makeArray(sel)
+        .filter((s) => s.get('available'));
+      selected.addObjects(valid);
     },
     toggleSelectedPage(page) {
-      if (!page.get('available')) {
-        return;
-      }
       const selected = this.get('selectedItems');
       if (selected.contains(page)) {
         selected.removeObject(page);
       } else {
-        this.send('selectPage', page);
+        this.send('select', page);
       }
     },
     toggleZoom(page) {
@@ -85,7 +98,7 @@ export default Ember.Controller.extend({
       this.send('addPage', doc, page);
     },
     addPage(doc, page) {
-      this.send('selectPage', page);
+      this.send('select', page);
       this.send('flushSelection', doc);
     },
     flushSelection(doc) {
