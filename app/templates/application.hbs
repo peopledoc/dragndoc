@@ -1,7 +1,7 @@
 <div class="container-fluid wrapper" id="content">
   <div id="source">
     <div class="topnavbar">
-      <h2>Source</h2>
+      <h2>{{t 'source'}}</h2>
     </div>
     <div class="page-list">
       {{#each pages as |page|}}
@@ -14,12 +14,14 @@
 
   <div id="compose">
     <div class="topnavbar">
-      <h2>Composition</h2>
-      <button {{action 'toggleHelp'}} type="button" class="btn-help btn btn-default btn-small" >?</button>
+      <h2>{{t 'composition'}}</h2>
+      <button {{action 'toggleHelp'}} type="button" class="btn-help btn btn-default btn-small" >
+        {{t 'help_button_text'}}
+      </button>
     </div>
     <div id="compose-content">
       {{#compose-btn canSubmit=documents.length click=(action 'serialize')}}
-        <i class="fa fa-cloud-download">&nbsp;</i>{{ validateText }}<br />
+        <i class="fa fa-cloud-download">&nbsp;</i>{{t 'submit'}}<br />
       {{/compose-btn}}
       {{doc-creator create='createDocument'}}
       {{#each sortedDocuments as |document|}}
@@ -36,15 +38,15 @@
 {{#if isHelpVisible}}
 {{#modal-dialog translucentOverlay=true close="toggleHelp"}}
   <div class="modal-body">
-    <h2>{{ helpText }}</h2>
+    <h2>{{t 'help.title' }}</h2>
     <div class="bg"></div>
     <br/>
-    <h4>Keyboard shortcuts</h4>
-    <p>To select non-consecutive files or folders, press and hold down the <code>Ctrl</code> key, and then <code>click</code> each item that you want to select.</p>
-    <p>To select a consecutive group of pages, press and hold down the <code>Shift</code> key, <code>click</code> the first item and then <code>click</code> the last item.</p>
+    <h4>{{t 'help.subtitle' }}</h4>
+    <p>{{t 'help.paragraph_1_html'}}</p>
+    <p>{{t 'help.paragraph_2_html'}}</p>
   </div>
   <div class="modal-footer">
-    <div class="btn btn-primary pull-right" {{action 'toggleHelp'}}>OK</div>
+    <div class="btn btn-primary pull-right" {{action 'toggleHelp'}}>{{t 'ok'}}</div>
   </div>
 {{/modal-dialog}}
 {{/if}}
