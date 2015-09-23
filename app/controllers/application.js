@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
   }),
   initDocuments: function () {
     this.set('documents', this.store.find('document'));
+    this.set('selectedItems', Ember.makeArray());
   }.on('init'),
   sortedDocuments: Ember.computed('documents.[]', {
     get() {
@@ -43,6 +44,31 @@ export default Ember.Controller.extend({
     toggleHelp() {
       this.toggleProperty('isHelpVisible');
     },
+    handleClick(page, event) {
+      let action = 'toggleZoom';
+      if (event.ctrlKey || event.metaKey) { //Don't forget the Mac users
+        action = 'toggleSelectedPage';
+      }
+      this.send(action, page, event);
+    },
+    selectPage(page) {
+      if (!page.get('available')) {
+        return;
+      }
+      const selected = this.get('selectedItems');
+      selected.addObject(page);
+    },
+    toggleSelectedPage(page) {
+      if (!page.get('available')) {
+        return;
+      }
+      const selected = this.get('selectedItems');
+      if (selected.contains(page)) {
+        selected.removeObject(page);
+      } else {
+        this.send('selectPage', page);
+      }
+    },
     toggleZoom(page) {
       if (page) {
         const img = new Image();
@@ -56,13 +82,22 @@ export default Ember.Controller.extend({
     },
     createDocument(page) {
       const doc = this.store.push('document', { id: `document_${Ember.uuid()}`, pages: [] });
-      doc.addPage(page);
+      this.send('addPage', doc, page);
+    },
+    addPage(doc, page) {
+      this.send('selectPage', page);
+      this.send('flushSelection', doc);
+    },
+    flushSelection(doc) {
+      const selected = this.get('selectedItems');
+      doc.insert(selected);
+      selected.clear();
     },
     serialize() {
       this.serialize(this.get('sortedDocuments'));
     },
-    clearPage(page, document) {
-      document.removePage(page);
+    removePage(page, document) {
+      document.remove(page);
       if (document.get('pages.length') === 0) {
         this.store.remove('document', document.get('id'));
       }

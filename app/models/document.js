@@ -1,13 +1,16 @@
+import Ember from 'ember';
 import { Model } from 'ember-cli-simple-store/model';
 
 export default Model.extend({
   pages: [],
-  addPage(page) {
-    this.get('pages').pushObject(page);
-    page.set('available', false);
+  insert(page) {
+    const pages = Ember.makeArray(page);
+    this.get('pages').addObjects(pages);
+    pages.invoke('set', 'available', false);
   },
-  removePage(page) {
-    this.get('pages').removeObject(page);
-    page.set('available', true);
+  remove(page) {
+    const pages = Ember.makeArray(page);
+    this.get('pages').removeObjects(pages);
+    pages.invoke('set', 'available', true);
   }
 });

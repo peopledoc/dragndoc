@@ -5,7 +5,9 @@
     </div>
     <div class="page-list">
       {{#each pages as |page|}}
-        {{doc-page content=page highlightClass='hvr-grow' click=(action 'toggleZoom' page)}}
+        {{#doc-page content=page selected=(array-contains selectedItems page) highlightClass="hvr-grow" click=(action 'handleClick' page)}}
+          <div class="highlight"></div>
+        {{/doc-page}}
       {{/each}}
     </div>
   </div>
@@ -21,9 +23,9 @@
       {{/compose-btn}}
       {{doc-creator create='createDocument'}}
       {{#each sortedDocuments as |document|}}
-        {{#pending-document content=document as |page|}}
+        {{#pending-document content=document drop='addPage' as |page|}}
           {{#doc-page isDraggable=true content=page click=(action 'toggleZoom' page)}}
-          <div class="close fa fa-times" {{action 'clearPage' page document}}></div>
+          <div class="close fa fa-times" {{action 'removePage' page document}}></div>
           {{/doc-page}}
         {{/pending-document}}
       {{/each}}

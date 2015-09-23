@@ -6,13 +6,15 @@ export default Ember.Component.extend({
     'dragging',
     'isDraggable::disabled',
     'content.isAvailable::composed',
-    'highlight'
+    'highlight',
+    'selected',
   ],
+  selected: false,
   isDraggable: Ember.computed.reads('content.available'),
   highlightClass: '',
-  highlight: Ember.computed('isDraggable', {
+  highlight: Ember.computed('selected', 'isDraggable', {
     get() {
-      if (this.get('isDraggable')) {
+      if (!this.get('selected') && this.get('isDraggable')) {
         return this.get('highlightClass');
       }
       return '';

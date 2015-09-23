@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['booklet'],
-  document: Ember.computed.alias('content'),
+  document: Ember.computed.reads('content'),
   actions: {
     reorderItems(order/* , group */) {
       const pages = this.get('document.pages');
@@ -10,7 +10,7 @@ export default Ember.Component.extend({
       pages.pushObjects(order);
     },
     dropped(page) {
-      this.get('document').addPage(page);
+      this.sendAction('drop', this.get('document'), page);
     }
   }
 });
