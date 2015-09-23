@@ -26,7 +26,13 @@ export default Ember.Controller.extend({
         };
       });
     }).toArray();
-    console.log('RESULT', results);
+    let callback;
+    const config = this.container.lookup('config:embedded');
+    if (config) {
+      callback = get(config, 'onValidation');
+    }
+    callback = callback || console.log.bind(console);
+    callback(results);
   },
   actions: {
     toggleHelp() {
