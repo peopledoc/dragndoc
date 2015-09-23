@@ -22,7 +22,9 @@
       {{doc-creator create='createDocument'}}
       {{#each documents as |document|}}
         {{#pending-document content=document as |page|}}
-          {{doc-page isDraggable=true content=page click=(action 'toggleZoom' page)}}
+          {{#doc-page isDraggable=true content=page click=(action 'toggleZoom' page)}}
+            <div class="close fa fa-times"></div>
+          {{/doc-page}}
         {{/pending-document}}
       {{/each}}
     </div>

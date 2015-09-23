@@ -20,13 +20,21 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
   app.import('bower_components/bootstrap/dist/css/bootstrap.css');
+  app.import('bower_components/font-awesome/css/font-awesome.css');
+
+  const trees = [];
+
+  trees.push(new Funnel('bower_components/font-awesome/fonts/', {
+    srcDir: '/',
+    include: ['*'],
+    destDir: '/fonts'
+  }));
+
 
   if (app.env === 'development') {
-    var assets = new Funnel('demo', {
+    trees.push(new Funnel('demo', {
       destDir: '/assets/demo'
-    });
-    return app.toTree(assets);
-  } else {
-    return app.toTree();
+    }));
   }
+  return app.toTree(trees);
 };

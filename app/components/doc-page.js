@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   classNameBindings: [
     'dragging',
     'isDraggable::disabled',
-    'isDraggable::composed',
+    'content.isAvailable::composed',
     'highlight'
   ],
   isDraggable: Ember.computed.reads('content.available'),
