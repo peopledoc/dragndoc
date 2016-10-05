@@ -13,10 +13,9 @@
     "underscore": "~1.5.2",
     "bootstrap": "~3.0.3",
     "backbone.bootstrap-modal": "https://github.com/coulix/backbone.bootstrap-modal/archive/bootstrap3.zip",
-    "font-awesome": "~4.0.3"
+    "font-awesome": "~4.0.3",
+    "protonet/jquery.inview": "^1.1.2"
   },
-
-  "overrides": "Fixing the lack of main property on some bower packages, see https://github.com/paulmillr/read-components",
   "overrides": {
     "backbone": {
       "main": "backbone.js"
@@ -25,10 +24,15 @@
       "main": "underscore.js"
     },
     "font-awesome": {
-      "main": ["fonts", "css"]
+      "main": [
+        "fonts",
+        "css"
+      ]
     },
     "backbone.bootstrap-modal": {
-      "main": ["src"]
+      "main": [
+        "src"
+      ]
     }
   }
 }

@@ -11,7 +11,7 @@ DragNDoc is JS application to help splitting and ordering document pages in sub 
 Try it
 ------
 
-Small PDF splitter application based on DragNDoc splitpdfapp.com http://splitpdfapp.com 
+Small PDF splitter application based on DragNDoc splitpdfapp.com http://splitpdfapp.com
 
 Install
 -------
@@ -96,6 +96,7 @@ Then initialize the DragNDoc app and pass it a map describing your pages:
         DragNDoc = require('application');
 
         DragNDoc.start({
+           maxConcurrentLoadingPages: 2 # optional, defaults to false which means no limit
            pages: demo_pages,
            validationText: "Validate",
            onValidation: function(data) {
@@ -107,7 +108,7 @@ Then initialize the DragNDoc app and pass it a map describing your pages:
 
 Options
 -------
- 
+
 **pages**:
 
 A list of metas describing the source document pages.
@@ -117,7 +118,7 @@ A list of metas describing the source document pages.
 ``small_src`` thumb image source
 
 ``large_src`` large preview source (750x1000)
-    
+
 
 **validationText**:
 
@@ -203,4 +204,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-

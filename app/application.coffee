@@ -11,6 +11,7 @@ DragNDoc = ((Backbone, Marionette) ->
     callback = null
     callbackText = ""
     helpText = ""
+    maxConcurrentLoadingPages = false
 
     App.addInitializer (options) ->
         # set layout (source and composition zones)
@@ -21,6 +22,7 @@ DragNDoc = ((Backbone, Marionette) ->
         callback = options["onValidation"]
         callbackText = options["validationText"] || "Validate"
         helpText = options["helpText"] || "How to:"
+        maxConcurrentLoadingPages = options["maxConcurrentLoadingPages"] || maxConcurrentLoadingPages;
 
         for page,i in pages
             page["enabled"] = true # Can it be selected?
@@ -42,6 +44,8 @@ DragNDoc = ((Backbone, Marionette) ->
             helpText
         getCallback: ->
             callback
+        getMaxConcurrentLoadingPages: ->
+            maxConcurrentLoadingPages
 
     App.reqres.setHandler "pages:meta", ->
         API.getPagesMeta()
@@ -54,6 +58,9 @@ DragNDoc = ((Backbone, Marionette) ->
 
     App.reqres.setHandler "options:helpText", ->
         API.getHelpText()
+
+    App.reqres.setHandler "options:maxConcurrentLoadingPages", ->
+        API.getMaxConcurrentLoadingPages()
 
     # Marionette Command to display a large page preview as a bootsrap modal
     App.commands.setHandler "page:preview", (model) ->
@@ -129,7 +136,7 @@ DragNDoc.module "DragnDoc.PagePicker", (PagePicker, DragnDoc, Backbone, Marionet
             API.removeIdFromSelection model.get("id")
 
 
-        # When a shift event is received we get all pages with ids between what 
+        # When a shift event is received we get all pages with ids between what
         # is saved in `selectedPagesIds` and the received pageId.
         pagePickerView.on "itemview:page:shift:selected", (childView, model) ->
             selectedPagesIds.push model.get("id")
@@ -155,7 +162,7 @@ DragNDoc.module "DragnDoc.PagePicker", (PagePicker, DragnDoc, Backbone, Marionet
         pagePickerView.on "itemview:page:show_preview", (childView, model) ->
             DragNDoc.execute "page:preview", model
 
-        # Listen to doc creation event 
+        # Listen to doc creation event
         DragnDoc.vent.on "pages:added", ->
             pagesCollection.each (page) ->
                 if page.get("id") in selectedPagesIds
@@ -171,7 +178,7 @@ DragNDoc.module "DragnDoc.PagePicker", (PagePicker, DragnDoc, Backbone, Marionet
             page.set(composed: false)
             page.set(dragging: false)
 
-    API = 
+    API =
         getSelectedPagesIds: ->
             selectedPagesIds
         resetSelection: ->
@@ -244,7 +251,7 @@ DragNDoc.module "DragnDoc.Composer", (Composer, DragnDoc, Backbone, Marionette, 
         composerView.on "docs:export", (childView, doc) ->
             DragNDoc.request("options:callback")(that.docs.toJSON())
 
-        API = 
+        API =
             getPagesFromSelection: ->
                 allPages = DragNDoc.request("pages:meta")
 
