@@ -28,7 +28,7 @@ Then:
 
     $ npm install -g bower
 
-    $ npm install -g brunch
+    $ npm install -g brunch@1.7.20
 
 Once you have Brunch, install this application's dependencies:
 
