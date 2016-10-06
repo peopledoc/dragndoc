@@ -5,7 +5,8 @@ PageView = Marionette.ItemView.extend(
     template: "/templates/page"
 
     ui:
-        "image": "img"
+        "image": "img",
+        "spinner": ".spinner"
 
     events:
         "click img": "imgClick"
@@ -108,6 +109,7 @@ PageView = Marionette.ItemView.extend(
         if @model.get "loading" then @_loadImage()
 
     imageLoadChanged: ->
+        @ui.spinner.remove()
         @model.set "loading", false
         @model.set "loaded", true
 
