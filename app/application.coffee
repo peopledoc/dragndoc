@@ -11,7 +11,7 @@ DragNDoc = ((Backbone, Marionette) ->
     callback = null
     callbackText = ""
     helpText = ""
-    maxConcurrentLoadingPages = false
+    maxConcurrentLoadingPages = Infinity
 
     App.addInitializer (options) ->
         # set layout (source and composition zones)
@@ -22,7 +22,7 @@ DragNDoc = ((Backbone, Marionette) ->
         callback = options["onValidation"]
         callbackText = options["validationText"] || "Validate"
         helpText = options["helpText"] || "How to:"
-        maxConcurrentLoadingPages = options["maxConcurrentLoadingPages"] || maxConcurrentLoadingPages;
+        maxConcurrentLoadingPages = options["maxConcurrentLoadingPages"] || maxConcurrentLoadingPages
 
         for page,i in pages
             page["enabled"] = true # Can it be selected?

@@ -96,7 +96,7 @@ Then initialize the DragNDoc app and pass it a map describing your pages:
         DragNDoc = require('application');
 
         DragNDoc.start({
-           maxConcurrentLoadingPages: 2 # optional, defaults to false which means no limit
+           maxConcurrentLoadingPages: 2 # optional, defaults to Infinity which means no concurrency control
            pages: demo_pages,
            validationText: "Validate",
            onValidation: function(data) {

@@ -19,7 +19,7 @@ PageModel = Backbone.Model.extend(
 PagesCollection = Backbone.Collection.extend(
     _toBeLoadedQueue: []
     _loadingSlotAvailable: ->
-        return not @maxConcurrentLoadingPages or @where({loading: true}).length < @maxConcurrentLoadingPages
+        return @where({loading: true}).length < @maxConcurrentLoadingPages
     initialize: ->
         @maxConcurrentLoadingPages = DragNDoc.request("options:maxConcurrentLoadingPages")
         @on "change:viewed", (model, viewed) =>
