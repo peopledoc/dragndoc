@@ -12,6 +12,7 @@ exports.config =
           'bower_components/jquery/jquery.js',
           'bower_components/underscore/underscore.js',
           'bower_components/backbone/backbone.js',
+          'bower_components/protonet/jquery.inview/jquery.inview.js',
           'vendor/scripts/backbone.marionette-1.4.1.js',
           'vendor/scripts/console-polyfill.js',
         ]

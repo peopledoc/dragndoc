@@ -39,6 +39,7 @@
 
         DragNDoc = require('application');
         DragNDoc.start({
+           maxConcurrentLoadingPages: 2,
            pages: demo_pages,
            validationText: "Validate",
            helpText: "How to split a document:",

@@ -4,18 +4,24 @@ PageView = Marionette.ItemView.extend(
     className: "page-wrap grow"
     template: "/templates/page"
 
+    ui:
+        "image": "img",
+        "spinner": ".spinner"
+
     events:
         "click img": "imgClick"
         "dragstart img": "dragstart"
         "dragend img": "dragend"
         "click div.close": "closeClick"
         "sortable:drop": "drop"
+        "inview": "inviewChanged"
 
     modelEvents:
         "change:enabled": "enabledChanged"
         "change:composed": "composedChanged"
         "change:selected": "selectedChanged"
         "change:dragging": "draggingChanged"
+        "change:loading": "loadingChanged"
 
     initialize: ->
         if @model.get("composed")
@@ -24,7 +30,10 @@ PageView = Marionette.ItemView.extend(
         @on "itemview:page:show_preview", (childView, model) ->
             DragNDoc.execute "page:preview", model
 
-   # On drag start we update our styling
+    onRender: ->
+        @ui.image.one "load", @imageLoadChanged.bind(@)
+
+    # On drag start we update our styling
     dragstart: (e) ->
         # Check if this page is not already selected
         if @model.get("composed")
@@ -92,6 +101,20 @@ PageView = Marionette.ItemView.extend(
             $(@el).addClass "dragging"
         else
             $(@el).removeClass "dragging"
+
+    inviewChanged: ->
+        @model.set "viewed", true
+
+    loadingChanged: ->
+        if @model.get "loading" then @_loadImage()
+
+    imageLoadChanged: ->
+        @ui.spinner.remove()
+        @model.set "loading", false
+        @model.set "loaded", true
+
+    _loadImage: ->
+        @ui.image.attr("src", @model.get("small_src"))
 
     _composePage: ->
         $(@el).addClass("composed").addClass("grow")
