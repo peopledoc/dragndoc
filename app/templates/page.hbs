@@ -1,6 +1,10 @@
  <div>
-    <span class="spinner fa fa-spinner fa-spin"></span>
-    <img id="{{ id }}" class="thumb-preview" >
+   {{#if viewed}}
+     <img id="{{ id }}" class="thumb-preview" src="{{small_src}}">
+   {{else}}
+     <span class="spinner fa fa-spinner fa-spin"></span>
+     <img id="{{ id }}" class="thumb-preview">
+   {{/if}}
     <div class="highlight"></div>
     <div class="close fa fa-times"></div>
     <p class="pagenumber">
