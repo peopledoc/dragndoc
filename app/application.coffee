@@ -12,6 +12,7 @@ DragNDoc = ((Backbone, Marionette) ->
     callbackText = ""
     helpText = ""
     maxConcurrentLoadingPages = Infinity
+    maxPageLoadingRetries = 0
 
     App.addInitializer (options) ->
         # set layout (source and composition zones)
@@ -23,6 +24,7 @@ DragNDoc = ((Backbone, Marionette) ->
         callbackText = options["validationText"] || "Validate"
         helpText = options["helpText"] || "How to:"
         maxConcurrentLoadingPages = options["maxConcurrentLoadingPages"] || maxConcurrentLoadingPages
+        maxPageLoadingRetries = options["maxPageLoadingRetries"] || maxPageLoadingRetries
 
         for page,i in pages
             page["enabled"] = true # Can it be selected?
@@ -46,6 +48,8 @@ DragNDoc = ((Backbone, Marionette) ->
             callback
         getMaxConcurrentLoadingPages: ->
             maxConcurrentLoadingPages
+        getMaxPageLoadingRetries: ->
+            maxPageLoadingRetries
 
     App.reqres.setHandler "pages:meta", ->
         API.getPagesMeta()
@@ -61,6 +65,9 @@ DragNDoc = ((Backbone, Marionette) ->
 
     App.reqres.setHandler "options:maxConcurrentLoadingPages", ->
         API.getMaxConcurrentLoadingPages()
+
+    App.reqres.setHandler "options:maxPageLoadingRetries", ->
+        API.getMaxPageLoadingRetries()
 
     # Marionette Command to display a large page preview as a bootsrap modal
     App.commands.setHandler "page:preview", (model) ->
