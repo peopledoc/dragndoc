@@ -5,7 +5,7 @@ PageView = Marionette.ItemView.extend(
     template: "/templates/page"
 
     ui:
-        "image": "img",
+        "image": "img"
         "spinner": ".spinner"
 
     events:
@@ -103,18 +103,23 @@ PageView = Marionette.ItemView.extend(
             $(@el).removeClass "dragging"
 
     inviewChanged: ->
-        @model.set "viewed", true
+        @model.loadingEnqueue()
 
     loadingChanged: ->
         if @model.get "loading" then @_loadImage()
 
     imageLoadChanged: ->
         @ui.spinner.remove()
-        @model.set "loading", false
-        @model.set "loaded", true
+        @ui.image.off("error")
+        @model.loadingSucceeded()
+
+    imageErrorChanged: ->
+        @model.loadingFailed()
 
     _loadImage: ->
-        @ui.image.attr("src", @model.get("small_src"))
+        @ui.image
+          .on("error", @imageErrorChanged.bind(@))
+          .attr("src", @model.get("small_src"))
 
     _composePage: ->
         $(@el).addClass("composed").addClass("grow")
